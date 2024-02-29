@@ -60,13 +60,36 @@ const menuListTranslations = [
   "Settings",
   "Sign Out",
 ];
+// const menuListIcons = [
+//   <HomeIcon />,
+//   <TableChartIcon />,
+//   // <EqualizerIcon />,
+//   <Person2Icon />,
+//   <Settings />,
+//   <ExitToAppIcon />,
+// ];
+
+const createMenuListIcon = (key: any) => {
+  const icons = {
+    home: <HomeIcon />,
+    tableChart: <TableChartIcon />,
+    // equalizer: <EqualizerIcon />, // Uncomment if needed
+    person: <Person2Icon />,
+    settings: <Settings />,
+    exitToApp: <ExitToAppIcon />,
+  };
+
+  // @ts-ignore
+  return icons[key];
+};
+
 const menuListIcons = [
-  <HomeIcon />,
-  <TableChartIcon />,
-  // <EqualizerIcon />,
-  <Person2Icon />,
-  <Settings />,
-  <ExitToAppIcon />,
+  createMenuListIcon("home"),
+  createMenuListIcon("tableChart"),
+  // createMenuListIcon('equalizer'), // Uncomment if needed
+  createMenuListIcon("person"),
+  createMenuListIcon("settings"),
+  createMenuListIcon("exitToApp"),
 ];
 
 const SideMenu = () => {
