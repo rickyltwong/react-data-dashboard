@@ -143,7 +143,9 @@ const SideMenu = () => {
                     justifyContent: "center",
                   }}
                 >
-                  {menuListIcons[index]}
+                  {React.cloneElement(menuListIcons[index], {
+                    key: `icon-${text}`,
+                  })}
                 </ListItemIcon>
                 <ListItemText
                   primary={text}
