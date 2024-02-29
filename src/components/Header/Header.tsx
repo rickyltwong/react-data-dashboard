@@ -12,7 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { signIn, signOut, useSession } from "next-auth/react";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
+import NextLink from "next/link";
 
 export type HeaderProps = {
   ColorModeContext: React.Context<{ toggleColorMode: () => void }>;
@@ -21,12 +22,13 @@ export type HeaderProps = {
 const Header = (props: HeaderProps) => {
   const { ColorModeContext } = props;
   const { data: session } = useSession();
+  const theme = useTheme();
   const userProfileImg = session?.user?.image as string;
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null,
+    null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null,
+    null
   );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -118,6 +120,17 @@ const Header = (props: HeaderProps) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <MenuItem>
+                <NextLink
+                  href={"/dashboard/profile"}
+                  style={{
+                    color: theme.palette.text.primary,
+                    textDecoration: "none",
+                  }}
+                >
+                  <Typography textAlign="center">Profile</Typography>
+                </NextLink>
+              </MenuItem>
               <MenuItem onClick={() => (session ? signOut() : signIn())}>
                 <Typography textAlign="center">
                   {session ? "Logout" : "Login"}
